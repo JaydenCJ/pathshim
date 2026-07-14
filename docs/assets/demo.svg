@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="474" viewBox="0 0 720 474" font-family="Menlo, Consolas, monospace" font-size="14">
+  <rect width="720" height="474" rx="10" fill="#101418"/>
+  <circle cx="24" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="22" r="6" fill="#27c93f"/>
+  <text x="360" y="27" fill="#8b949e" text-anchor="middle" font-size="12">pathshim — record real tool calls, replay them offline</text>
+  <g fill="#c9d1d9">
+    <text x="24" y="62"><tspan fill="#7ee787">$</tspan> pathshim record --cassette deploy.json --cmd git,kubectl -- sh deploy.sh</text>
+    <text x="24" y="86">deploying deadbee</text>
+    <text x="24" y="108">deployment.apps/app configured</text>
+    <text x="24" y="130" fill="#d29922">Warning: using default context</text>
+    <text x="24" y="152" fill="#79c0ff">pathshim: recorded 2 interaction(s) for 2 command(s) -&gt; deploy.json</text>
+    <text x="24" y="190"><tspan fill="#7ee787">$</tspan> rm tools/git tools/kubectl   <tspan fill="#8b949e"># the real tools are gone</tspan></text>
+    <text x="24" y="228"><tspan fill="#7ee787">$</tspan> pathshim replay --cassette deploy.json --require-all -- sh deploy.sh</text>
+    <text x="24" y="252">deploying deadbee</text>
+    <text x="24" y="274">deployment.apps/app configured</text>
+    <text x="24" y="296" fill="#d29922">Warning: using default context</text>
+    <text x="24" y="318" fill="#79c0ff">pathshim: replayed 2/2 interaction(s), 0 miss(es)</text>
+    <text x="24" y="356"><tspan fill="#7ee787">$</tspan> pathshim replay --cassette deploy.json -- git push --force</text>
+    <text x="24" y="378" fill="#f778ba">pathshim: replay miss for "git" — no unconsumed recording matches</text>
+    <text x="24" y="400" fill="#f778ba">  wanted: git push --force</text>
+    <text x="24" y="422" fill="#f778ba">  closest "git" recordings:</text>
+    <text x="24" y="444" fill="#f778ba">    #1 git rev-parse --short HEAD (exit 0) — not yet consumed</text>
+  </g>
+</svg>
